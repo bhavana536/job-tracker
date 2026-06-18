@@ -1,7 +1,8 @@
 from fastapi import FastAPI, HTTPException
-from models import JobCreate
+from fastapi.middleware.cors import CORSMiddleware
+from models import JobCreate, AnalyzeRequest  # add AnalyzeRequest
 from database import add_job, get_all_jobs, get_job, update_job, delete_job
-
+from analyze import analyze_resume  # add this
 app = FastAPI()
 
 @app.get("/")
@@ -43,3 +44,23 @@ def delete_single_job(job_id: str):
     if not success:
         raise HTTPException(status_code=404, detail="Job not found")
     return {"message": "Job deleted!"}
+
+@app.post("/analyze")
+def analyze(request: AnalyzeRequest):
+    """Analyze resume against job description using Gemini AI."""
+    try:
+        result = analyze_resume(request.resume_text, request.job_description)
+        return {"analysis": result}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:5174"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)  

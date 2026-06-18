@@ -7,3 +7,7 @@ class JobCreate(BaseModel):
     status:str = "Applied"
     jd_link:Optional[str] = None
     notes:Optional[str] = None
+
+class AnalyzeRequest(BaseModel):
+    resume_text: str
+    job_description: str    

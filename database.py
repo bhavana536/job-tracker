@@ -39,7 +39,7 @@ def update_job(job_id: str, updates: dict) -> bool:
 
 def delete_job(job_id: str) -> bool:
     """Delete a job by ID."""
-    ref = db.colection(JOBS_COLLECTION).document(job_id)
+    ref = db.collection(JOBS_COLLECTION).document(job_id)
     if not ref.get().exists:
         return False
     ref.delete()
