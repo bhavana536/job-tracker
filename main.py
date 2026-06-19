@@ -59,7 +59,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://localhost:5174",
-        "https://your-vercel-url.vercel.app"
+        "https://job-tracker-lac-zeta.vercel.app/"
     ],
     allow_credentials=True,
     allow_methods=["*"],
