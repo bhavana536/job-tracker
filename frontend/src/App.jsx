@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 
-const API = "http://localhost:8000"
+const API = "https://job-tracker-sy9u.onrender.com"
 
 const light = {
   app: { minHeight: "100vh", backgroundColor: "#f0f2f5", padding: "30px" },
