@@ -64,7 +64,8 @@ function App() {
     }
     setAdding(true)
     try {
-      await axios.post(`${API}/jobs`, form)
+      const today = new Date().toISOString().split("T")[0]
+      await axios.post(`${API}/jobs`, { ...form, date_applied: today })
       setForm({ company: "", role: "", status: "Applied", notes: "" })
       fetchJobs()
     } catch (error) {
