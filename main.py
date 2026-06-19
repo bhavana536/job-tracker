@@ -56,12 +56,8 @@ def analyze(request: AnalyzeRequest):
     
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://localhost:5174",
-        "https://*.vercel.app"  # allows all vercel domains
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],  # allows ALL origins
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
